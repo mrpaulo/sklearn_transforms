@@ -11,8 +11,8 @@ class DropColumns(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         # Primeiro realizamos a cópia do dataframe 'X' de entrada
-        data = X.copy()
-        data = Normalizer().fit_transform(data[["REPROVACOES_DE", "NOTA_DE"]])
+        X = Normalizer().fit_transform(X[["REPROVACOES_DE", "NOTA_DE"]])
+        data = X.copy()        
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
     
